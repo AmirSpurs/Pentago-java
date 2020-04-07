@@ -10,6 +10,7 @@ public class MainBoard extends Board {
     }
 
     private int witchSubBoard(int x, int y) {
+
         if (x < 3) {
             if (y < 3)
                 return 0;
@@ -45,9 +46,7 @@ public class MainBoard extends Board {
 
     public boolean empty(int x,int y)
     {
-        if (subBoards[witchSubBoard(x,y)].getMap()[x][y]==0 )
-            return true;
-        return false;
+        return subBoards[witchSubBoard(x, y)].getMap()[x][y] == 0;
     }
     public void print() {
         for (int i = 0; i < ROW; i++) {
