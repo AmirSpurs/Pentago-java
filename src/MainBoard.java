@@ -9,16 +9,33 @@ public class MainBoard extends Board {
             subBoards[i] = new SubBoard(3, 3, i);
     }
 
-    private int witchSubBoard(int x, int y) {
+    private int [] witchSubBoard(int x, int y) {
 
+        int [] pos = new int [3] ;
         if (x < 3) {
-            if (y < 3)
-                return 0;
-            else
-                return 1;
-        } else if (y < 3)
-            return 2;
-        return 3;
+            if (y < 3) {
+                pos[0] = 0;
+                pos[1] = x;
+                pos[2] = y ;
+                return pos;
+            }
+            else {
+                pos[0] = 1;
+                pos[1] = x ;
+                pos[2] = y -3;
+                return pos;
+            }
+        }
+        else if (y < 3) {
+            pos[0] = 2;
+            pos[1] = x - 3;
+            pos[2] = y;
+            return pos;
+        }
+        pos[0] = 3;
+        pos[1] = x - 3;
+        pos[2] = y - 3;
+        return pos ;
     }
 
     public void twistSubBoard (int cw,int subBoardNumber)
@@ -26,35 +43,40 @@ public class MainBoard extends Board {
         subBoards[subBoardNumber].twist(cw);
     }
     public void placeDisk(int x, int y, Player playerToPlace) {
-        int witchONe = witchSubBoard(x,y);
+        int[] witchONe = witchSubBoard(x,y);
         playerToPlace.addDisk(x, y);
-        switch (witchONe) {
-            case 1:
-                y -= 3;
-                break;
-            case 2:
-                x -= 3;
-                break;
-            case 3:
-                x -= 3;
-                y -= 3;
-        }
-        subBoards[witchONe].getMap()[x][y] = playerToPlace.getCode();
-
+        subBoards[witchONe[0]].getMap()[witchONe[1]][witchONe[2]] = playerToPlace.getCode();
 
     }
 
     public boolean empty(int x,int y)
     {
-        return subBoards[witchSubBoard(x, y)].getMap()[x][y] == 0;
+        int[] witchONe = witchSubBoard(x,y);
+        return subBoards[witchONe[0]].getMap()[witchONe[1]][witchONe[2]] == 0;
     }
     public void print() {
+
+        for (int i=0;i<ROW;i++)
+            System.out.print("\u001B[93m" + "     " + i);
+        System.out.println();
+        System.out.println("\u001B[31m" + "  _________________________________________________");
+
+
         for (int i = 0; i < ROW; i++) {
-            for (int j = 0; j < COLUMN; j++)
-                System.out.println();
-            System.out.println();
+            System.out.print("\u001B[93m" + i + " ");
+            for (int j = 0; j < COLUMN; j++) {
+                int[] witchONe = witchSubBoard(i, j);
+                System.out.print("\u001B[31m" + "|  ");
 
-
+                if (subBoards[witchONe[0]].getMap()[witchONe[1]][witchONe[2]] == 1)
+                    System.out.print("\u001B[97m" + '⬤' + "\u001B[31m" + "  ");
+                else if (subBoards[witchONe[0]].getMap()[witchONe[1]][witchONe[2]] == -1)
+                    System.out.print("\u001B[30m" + '⬤' + "\u001B[31m" + "  ");
+                else
+                    System.out.print("\u001B[94m" + '⬤' + "\u001B[31m" + "  ");
+            }
+            System.out.println("|");
+            System.out.println("  _________________________________________________" + "\u001B[37m" );
         }
     }
 }

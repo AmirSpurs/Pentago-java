@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class GameManagment {
-    Player [] players ;
-    MainBoard board;
+    private Player [] players ;
+    private MainBoard board;
 
     public GameManagment(Player player1,Player player2, MainBoard board) {
         players = new Player [2] ;
@@ -17,6 +17,8 @@ public class GameManagment {
         boolean isGameFinished = false;
         while (!isGameFinished) {
             for (int i = 0; i < 2; i++) {
+                board.print();
+
                 boolean flag = false;
                 int x;
                 int y;
@@ -26,9 +28,11 @@ public class GameManagment {
                     flag = true;
                     System.out.println(players[i].getName() + " Turn");
                     System.out.println("Enter disk coordinate :");
-                    x = (int) input.next().charAt(0) - 49;
-                    y = (int) input.next().charAt(0) - 49;
+                    x = (int) input.next().charAt(0) - 48;
+                    y = (int) input.next().charAt(0) - 48;
                 } while (!checkAndPutDisk(x, y, players[i]) );
+                board.print();
+
                 if (endGame())
                 {
                     isGameFinished = true;
@@ -42,9 +46,9 @@ public class GameManagment {
                         invalid();
                     flag = true;
                     System.out.println("Pleas chose one of blokes by entering number from 0 to 3 ");
-                     subNumber = (int) input.next().charAt(0) - 49;
+                     subNumber = (int) input.next().charAt(0) - 48;
                     System.out.println("Pleas enter 0 OR 1\n0)Clockwise)\n1)Anti clockwise :");
-                     cw = (int) input.next().charAt(0) - 49;
+                     cw = (int) input.next().charAt(0) - 48;
                 } while (!checkAndTwist(cw,subNumber));
                 if (endGame())
                 {
