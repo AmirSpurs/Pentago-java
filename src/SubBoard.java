@@ -15,10 +15,10 @@ public class SubBoard extends Board{
         return map;
     }
 
-    public void twist(boolean clockWise) {
+    public void twist(int clockWise) {
         int [][] copy = new int[3][3];
         copy = map.clone();
-        if (clockWise)
+        if (clockWise==1)
         {
             int k =0 ;
             for (int i=ROW-1;i>=0;i--) {
@@ -46,6 +46,5 @@ public class SubBoard extends Board{
 
 
     }
-    public void addDisk(){}
 
 }

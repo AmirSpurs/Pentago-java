@@ -20,11 +20,35 @@ public class MainBoard extends Board {
         return 3;
     }
 
+    public void twistSubBoard (int cw,int subBoardNumber)
+    {
+        subBoards[subBoardNumber].twist(cw);
+    }
     public void placeDisk(int x, int y, Player playerToPlace) {
+        int witchONe = witchSubBoard(x,y);
         playerToPlace.addDisk(x, y);
-        subBoards[witchSubBoard(x, y)].getMap()[x][y] = playerToPlace.getCode();
+        switch (witchONe) {
+            case 1:
+                y -= 3;
+                break;
+            case 2:
+                x -= 3;
+                break;
+            case 3:
+                x -= 3;
+                y -= 3;
+        }
+        subBoards[witchONe].getMap()[x][y] = playerToPlace.getCode();
+
+
     }
 
+    public boolean empty(int x,int y)
+    {
+        if (subBoards[witchSubBoard(x,y)].getMap()[x][y]==0 )
+            return true;
+        return false;
+    }
     public void print() {
         for (int i = 0; i < ROW; i++) {
             for (int j = 0; j < COLUMN; j++)
