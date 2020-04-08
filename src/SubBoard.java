@@ -1,10 +1,8 @@
 public class SubBoard extends Board{
-    private int color;
     private int [] [] map;
 
-    public SubBoard(int row, int column,int color) {
+    public SubBoard(int row, int column) {
         super(row, column);
-        this.color = color;
         map = new int [row][column] ;
         for (int i=0;i<row;i++)
             for (int j=0;j<column;j++)

@@ -18,6 +18,12 @@ public class GameManagment {
         while (!isGameFinished) {
             for (int i = 0; i < 2; i++) {
                 board.print();
+//                for (Disk disk:players[i].getDisks()
+//                     ) {
+//                    System.out.println("sss");
+//                    System.out.println(disk.getX()+" "+disk.getY());
+//
+//                }
 
                 boolean flag = false;
                 int x;
@@ -50,7 +56,7 @@ public class GameManagment {
                     System.out.println("Pleas enter 0 OR 1\n0)Clockwise)\n1)Anti clockwise :");
                      cw = (int) input.next().charAt(0) - 48;
                 } while (!checkAndTwist(cw,subNumber));
-                if (endGame())
+                if (endGame() || draw())
                 {
                     isGameFinished = true;
                     break;
@@ -71,6 +77,8 @@ public class GameManagment {
         if (cw<0 || cw>1 || subNumber<0 ||subNumber>3)
             return false;
         board.twistSubBoard(cw,subNumber);
+        players[1].updateDisk(board);
+        players[0].updateDisk(board);
         return true;
     }
     public boolean endGame()
@@ -87,6 +95,15 @@ public class GameManagment {
         return false;
 
     }
+        public boolean draw()
+        {
+            if (players[0].diskNumber()+players[1].diskNumber()==36)
+            {
+                System.out.println("!!!!Draw!!!!");
+                return true;
+            }
+            return false;
+        }
         public boolean checkAndPutDisk(int x, int y, Player playerToPlace)
         {
             if (x>=board.getROW() || y>=board.getCOLUMN() || x<0 || y<0 || !board.empty(x,y))

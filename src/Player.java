@@ -11,6 +11,15 @@ public class Player {
         disks = new ArrayList<Disk>();
     }
 
+    //for test
+    public ArrayList<Disk> getDisks() {
+        return disks;
+    }
+    public int diskNumber ()
+    {
+        return disks.size();
+    }
+
     public void addDisk(int x, int y) {
         disks.add(new Disk(x, y));
     }
@@ -48,14 +57,27 @@ public class Player {
                 antiDiagonalScore = antiDiagonalScore + 1 + disk.getY();
             }
         }
-        if ( ( antiDiagonal>=5 && (antiDiagonalScore==21 || antiDiagonalScore==15)) ||( mainDiagonal>=5 && (mainDiagonalScore==21 || mainDiagonalScore==15)) )
+        if ( ( antiDiagonal>=5 && (antiDiagonalScore==21 || antiDiagonalScore==15 || antiDiagonalScore==20 )) ||
+                ( mainDiagonal>=5 && (mainDiagonalScore==21 || mainDiagonalScore==15 || mainDiagonalScore==20) ) )
             return true;
         for (int i = 0; i < 6; i++) {
-           if ( (row[i][0]>=5 && (row[i][1]==21 || row[i][1]==15)) || (column[i][0]>=5 && (column[i][1]==21 || column[i][1]==15) ) )
+           if ( (row[i][0]>=5 && (row[i][1]==21 || row[i][1]==15  || row[i][1]==20)) ||
+                   (column[i][0]>=5 && (column[i][1]==21 || column[i][1]==15 || column[i][1]==20 ) ))
                return true;
         }
         return false;
 
+    }
+    public void updateDisk(MainBoard mainBoard) {
+        disks.clear();
+
+        for (int i = 0; i < mainBoard.getROW(); i++) {
+            for (int j = 0; j <  mainBoard.getCOLUMN(); j++) {
+                int[] witchONe = mainBoard.witchSubBoard(i, j);
+                if (mainBoard.subBoards[witchONe[0]].getMap()[witchONe[1]][witchONe[2]] ==code)
+                   addDisk(i, j);
+            }
+        }
     }
 
     public void setName(String name) {
