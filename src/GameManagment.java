@@ -17,6 +17,7 @@ public class GameManagment {
         boolean isGameFinished = false;
         while (!isGameFinished) {
             for (int i = 0; i < 2; i++) {
+                System.out.print("\033[H\033[2J");
                 board.print();
 //                for (Disk disk:players[i].getDisks()
 //                     ) {
@@ -37,6 +38,8 @@ public class GameManagment {
                     x = (int) input.next().charAt(0) - 48;
                     y = (int) input.next().charAt(0) - 48;
                 } while (!checkAndPutDisk(x, y, players[i]) );
+                System.out.print("\033[H\033[2J");
+
                 board.print();
 
                 if (endGame())
@@ -51,10 +54,12 @@ public class GameManagment {
                     if (flag)
                         invalid();
                     flag = true;
+                    System.out.println(players[i].getName() + " Turn");
                     System.out.println("Pleas chose one of blokes by entering number from 0 to 3 ");
                      subNumber = (int) input.next().charAt(0) - 48;
-                    System.out.println("Pleas enter 0 OR 1\n0)Clockwise)\n1)Anti clockwise :");
-                     cw = (int) input.next().charAt(0) - 48;
+                    System.out.println("Pleas enter 0 OR 1\n0)Clockwise)\n1)Anti clockwise");
+                    Thread.sleep(800);
+                    cw = (int) input.next().charAt(0) - 48;
                 } while (!checkAndTwist(cw,subNumber));
                 if (endGame() || draw())
                 {

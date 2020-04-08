@@ -55,33 +55,33 @@ public class MainBoard extends Board {
     public void print() {
 
         for (int i = 0; i < ROW; i++)
-            System.out.print("\u001B[93m" + "     " + i);
+            System.out.print("\u001B[32m" + "     " + i);
         System.out.println();
-        System.out.println("\u001B[31m" + "  _________________________________________________");
+        System.out.println("\u001B[32m" + "  ____________________________________" );
 
 
         for (int i = 0; i < ROW; i++) {
-            System.out.print("\u001B[93m" + i + " ");
+            System.out.print("\u001B[32m" + i + " ");
             for (int j = 0; j < COLUMN; j++) {
                 int[] witchONe = witchSubBoard(i, j);
                 if (j % 3 ==0)
-                    System.out.print("\u001B[31m" + "|  ");
+                    System.out.print("\u001B[32m" + "|  ");
                 else
-                    System.out.print("\u001B[31m" + "   ");
+                    System.out.print("\u001B[32m" + "   ");
 
 
                 if (subBoards[witchONe[0]].getMap()[witchONe[1]][witchONe[2]] == 1)
-                    System.out.print("\u001B[97m" + '⬤' + "\u001B[31m" + "  ");
+                    System.out.print("\u001B[30m" + '⬤' + "\u001B[32m" + "  ");
                 else if (subBoards[witchONe[0]].getMap()[witchONe[1]][witchONe[2]] == -1)
-                    System.out.print("\u001B[30m" + '⬤' + "\u001B[31m" + "  ");
+                    System.out.print("\u001B[31m" + '⬤' + "\u001B[32m" + "  ");
                 else
-                    System.out.print("\u001B[94m" + '⬤' + "\u001B[31m" + "  ");
+                    System.out.print("\u001B[37m" + '⬤' + "\u001B[32m" + "  ");
             }
             System.out.println("|");
             if (i ==5 || i==2)
-            System.out.println("  _________________________________________________" + "\u001B[37m");
+            System.out.println("  ____________________________________" + "\u001B[32m");
             else
-             System.out.println("                                                  " + "\u001B[37m");
+             System.out.println("                                                  " + "\u001B[47m"+"\u001B[32m");
 
         }
     }

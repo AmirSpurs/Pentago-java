@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Run {
     public static void main(String[] args) throws InterruptedException {
+        System.out.print("\u001B[47m"+"\u001B[32m");
         Scanner input = new Scanner(System.in);
         Player player2, player1;
         MainBoard board = new MainBoard(6, 6);

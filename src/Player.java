@@ -29,8 +29,8 @@ public class Player {
     }
 
     public boolean isFiveDisk() {
-        int mainDiagonal, antiDiagonal;
-        mainDiagonal = antiDiagonal = 0;
+        int mainDiagonal, antiDiagonal,diagonal1,diagonal2;
+        mainDiagonal = antiDiagonal =diagonal1=diagonal2= 0;
         int mainDiagonalScore, antiDiagonalScore;
         antiDiagonalScore = mainDiagonalScore = 0;
         int[][] row = new int[6][2];
@@ -43,6 +43,7 @@ public class Player {
         }
         for (Disk disk:disks)
         {
+
             column[disk.getY()][0] ++;
             column[disk.getY()][1] = 1 + disk.getX()+ column[disk.getY()][1];
             row[disk.getX()][0]++ ;
@@ -56,9 +57,15 @@ public class Player {
                 antiDiagonal++;
                 antiDiagonalScore = antiDiagonalScore + 1 + disk.getY();
             }
+            if (disk.getX()+disk.getY()==4)
+                diagonal2++ ;
+            if (disk.getX()-disk.getY()==1)
+                diagonal1++;
         }
         if ( ( antiDiagonal>=5 && (antiDiagonalScore==21 || antiDiagonalScore==15 || antiDiagonalScore==20 )) ||
                 ( mainDiagonal>=5 && (mainDiagonalScore==21 || mainDiagonalScore==15 || mainDiagonalScore==20) ) )
+            return true;
+        if (diagonal1==5 || diagonal2==5)
             return true;
         for (int i = 0; i < 6; i++) {
            if ( (row[i][0]>=5 && (row[i][1]==21 || row[i][1]==15  || row[i][1]==20)) ||
