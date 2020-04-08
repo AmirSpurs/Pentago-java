@@ -55,11 +55,11 @@ public class GameManagment {
                         invalid();
                     flag = true;
                     System.out.println(players[i].getName() + " Turn");
-                    System.out.println("Pleas chose one of blokes by entering number from 0 to 3 ");
-                     subNumber = (int) input.next().charAt(0) - 48;
-                    System.out.println("Pleas enter 0 OR 1\n0)Clockwise)\n1)Anti clockwise");
+                    System.out.println("Please chose one of blokes by entering number from 1 to 4 ");
+                     subNumber = (int) input.next().charAt(0) - 49;
+                    System.out.println("Please enter 1 OR 2\n1)Clockwise\n2)Anti clockwise");
                     Thread.sleep(800);
-                    cw = (int) input.next().charAt(0) - 48;
+                    cw = (int) input.next().charAt(0) - 49;
                 } while (!checkAndTwist(cw,subNumber));
                 if (endGame() || draw())
                 {
