@@ -34,9 +34,9 @@ public class GameManagment {
                         invalid();
                     flag = true;
                     System.out.println(players[i].getName() + " Turn");
-                    System.out.println("Enter disk coordinate :");
-                    x = (int) input.next().charAt(0) - 48;
+                    System.out.println("Enter disk coordinate (COLUMN ROW) :");
                     y = (int) input.next().charAt(0) - 48;
+                    x = (int) input.next().charAt(0) - 48;
                 } while (!checkAndPutDisk(x, y, players[i]) );
                 System.out.print("\033[H\033[2J");
 

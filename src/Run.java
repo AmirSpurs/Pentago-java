@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Run {
@@ -8,10 +10,24 @@ public class Run {
         Scanner input = new Scanner(System.in);
         Player player2, player1;
         MainBoard board = new MainBoard(6, 6);
+        Random random = new Random();
+        int color = random.nextInt(2);
+
         System.out.print("Enter first player name :");
-        player1 = new Player(input.nextLine(), 1);
+        String fName = input.nextLine();
         System.out.print("Enter second player name :");
-        player2 = new Player(input.nextLine(), -1);
+        String sName = input.nextLine();
+        if (color==1)
+        {
+            player1 = new Player(fName, -1);
+            player2 = new Player(sName, 1);
+
+        }
+        else
+        {
+            player1 = new Player(fName, 1);
+            player2 = new Player(sName, -1);
+        }
         GameManagment game = new GameManagment(player1, player2, board);
         game.playGame();
 
