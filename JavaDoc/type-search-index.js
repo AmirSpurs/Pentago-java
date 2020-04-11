@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"<Unnamed>","l":"Board"},{"p":"<Unnamed>","l":"Computer"},{"p":"<Unnamed>","l":"Disk"},{"p":"<Unnamed>","l":"GameManagement"},{"p":"<Unnamed>","l":"MainBoard"},{"p":"<Unnamed>","l":"Player"},{"p":"<Unnamed>","l":"Run"},{"p":"<Unnamed>","l":"SubBoard"}]
