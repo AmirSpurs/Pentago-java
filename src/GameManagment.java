@@ -99,7 +99,7 @@ public class GameManagment {
                         cw = (int) input.next().charAt(0) - 49;
                     } while (!checkAndTwist(cw, subNumber));
                 }
-                if (endGame() || draw())
+                if ( draw() || endGame())
                 {
                     isGameFinished = true;
                     break;
@@ -140,11 +140,12 @@ public class GameManagment {
     }
         public boolean draw()
         {
-            if (players[0].diskNumber()+players[1].diskNumber()==36)
+            if (players[0].diskNumber()+players[1].diskNumber()==36 ||   (players[0].isFiveDisk() && players[1].isFiveDisk())     )
             {
                 System.out.println("!!!!Draw!!!!");
                 return true;
             }
+
             return false;
         }
         public boolean checkAndPutDisk(int x, int y, Player playerToPlace)
