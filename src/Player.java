@@ -81,7 +81,7 @@ public class Player {
         for (int i = 0; i < mainBoard.getROW(); i++) {
             for (int j = 0; j <  mainBoard.getCOLUMN(); j++) {
                 int[] witchONe = mainBoard.witchSubBoard(i, j);
-                if (mainBoard.subBoards[witchONe[0]].getMap()[witchONe[1]][witchONe[2]] ==code)
+                if (mainBoard.getSubBoards()[witchONe[0]].getMap()[witchONe[1]][witchONe[2]] ==code)
                    addDisk(i, j);
             }
         }

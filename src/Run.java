@@ -20,13 +20,13 @@ public class Run {
         if (color==1)
         {
             player1 = new Player(fName, -1);
-            player2 = new Player(sName, 1);
+            player2 = new Computer(sName, 1);
 
         }
         else
         {
             player1 = new Player(fName, 1);
-            player2 = new Player(sName, -1);
+            player2 = new Computer(sName, -1);
         }
         GameManagment game = new GameManagment(player1, player2, board);
         game.playGame();

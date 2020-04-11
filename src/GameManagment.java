@@ -29,15 +29,32 @@ public class GameManagment {
                 boolean flag = false;
                 int x;
                 int y;
-                do {
-                    if (flag)
-                        invalid();
-                    flag = true;
+                if (players[i] instanceof Computer)
+                {
                     System.out.println(players[i].getName() + " Turn");
+                    //the player is COM so we should cast it
+                    Computer ai = (Computer) players[i];
+                    int[] coordinates = ai.bestPutMove(board);
+                    ai.updateDisk(board);
                     System.out.println("Enter disk coordinate (COLUMN ROW) :");
-                    y = (int) input.next().charAt(0) - 48;
-                    x = (int) input.next().charAt(0) - 48;
-                } while (!checkAndPutDisk(x, y, players[i]) );
+
+                    System.out.println( coordinates[1] + "  " +  coordinates[0]);
+                    //sleeps to give user time to process
+                    Thread.sleep(1500);
+                    checkAndPutDisk(coordinates[0],coordinates[1],players[i]);
+                }
+                else {
+                    do {
+                        if (flag)
+                            invalid();
+                        flag = true;
+                        System.out.println(players[i].getName() + " Turn");
+                        System.out.println("disk coordinate (COLUMN ROW) :");
+                        y = (int) input.next().charAt(0) - 48;
+                        x = (int) input.next().charAt(0) - 48;
+                    } while (!checkAndPutDisk(x, y, players[i]));
+                }
+
                 System.out.print("\033[H\033[2J");
 
                 board.print();
@@ -49,18 +66,39 @@ public class GameManagment {
                 }
                 int cw;
                 int subNumber;
-                flag = false ;
-                do {
-                    if (flag)
-                        invalid();
-                    flag = true;
+
+                if (players[i] instanceof Computer)
+                {
                     System.out.println(players[i].getName() + " Turn");
-                    System.out.println("Please chose one of blokes by entering number from 1 to 4 ");
-                     subNumber = (int) input.next().charAt(0) - 49;
-                    System.out.println("Please enter 1 OR 2\n1)Clockwise\n2)Anti clockwise");
-                    Thread.sleep(800);
-                    cw = (int) input.next().charAt(0) - 49;
-                } while (!checkAndTwist(cw,subNumber));
+                    //the player is COM so we should cast it
+                    Computer ai = (Computer) players[i];
+
+                    int[] twist = ai.bestTwistMove(board);
+                    players[1].updateDisk(board);
+                    players[0].updateDisk(board);
+                    System.out.println("Block number");
+                    System.out.println(twist[1]+1);
+                    if (twist[0]==0)
+                        System.out.println("Clockwise");
+                    else
+                        System.out.println("Anti clockwise");
+                    //sleeps to give user time to process
+                    Thread.sleep(1500);
+                }
+                else {
+                    flag = false;
+                    do {
+                        if (flag)
+                            invalid();
+                        flag = true;
+                        System.out.println(players[i].getName() + " Turn");
+                        System.out.println("Please chose one of blocks by entering number from 1 to 4 ");
+                        subNumber = (int) input.next().charAt(0) - 49;
+                        System.out.println("Please enter 1 OR 2\n1)Clockwise\n2)Anti clockwise");
+                        Thread.sleep(800);
+                        cw = (int) input.next().charAt(0) - 49;
+                    } while (!checkAndTwist(cw, subNumber));
+                }
                 if (endGame() || draw())
                 {
                     isGameFinished = true;

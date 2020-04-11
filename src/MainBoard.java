@@ -1,6 +1,6 @@
 public class MainBoard extends Board {
 
-    SubBoard[] subBoards;
+    private SubBoard[] subBoards;
 
     public MainBoard(int row, int column) {
         super(row, column);
@@ -50,6 +50,10 @@ public class MainBoard extends Board {
     public boolean empty(int x, int y) {
         int[] witchONe = witchSubBoard(x, y);
         return subBoards[witchONe[0]].getMap()[witchONe[1]][witchONe[2]] == 0;
+    }
+
+    public SubBoard[] getSubBoards() {
+        return subBoards;
     }
 
     public void print() {
